@@ -29,6 +29,7 @@ brand_map = {
     'CubeGreen-solo' : ('CubeGreen Solo', 'Hex/ProfiCNC'),
     'CUAVv5' : ('CUAVv5', 'CUAV'),
     'CUAVv5Nano' : ('CUAVv5 Nano', 'CUAV'),
+    'CUAV-Nora' : ('CUAV Nora', 'CUAV'),
     'DrotekP3Pro' : ('Pixhawk 3 Pro', 'Drotek'),
     'MatekF405' : ('Matek F405', 'Matek'),
     'MatekF405-STD' : ('Matek F405 STD', 'Matek'),
@@ -189,7 +190,7 @@ class ManifestGenerator():
         }
         if 'USBID' in apj_json:
             # newer APJ files have USBID in the json data
-            firmware['USBID'] = apj_json['USBID']
+            firmware['USBID'] = [apj_json['USBID']]
         elif platform in USBID_MAP:
             firmware['USBID'] = USBID_MAP[platform]
         else:
