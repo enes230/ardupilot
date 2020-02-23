@@ -51,6 +51,12 @@ Mode *Copter::mode_from_mode_num(const Mode::Number mode)
             break;
 #endif
 
+#if MODE_STM23 == ENABLED
+        case Mode::Number::MODESTM23:
+            ret = &mode_stm23;
+            break;
+#endif
+
 #if MODE_CIRCLE_ENABLED == ENABLED
         case Mode::Number::CIRCLE:
             ret = &mode_circle;

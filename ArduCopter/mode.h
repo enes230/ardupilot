@@ -36,6 +36,7 @@ public:
         ZIGZAG    =    24,  // ZIGZAG mode is able to fly in a zigzag manner with predefined point A and point B
         SYSTEMID  =    25,  // System ID mode produces automated system identification signals in the controllers
         AUTOROTATE =   26,  // Autonomous autorotation
+        MODESTM23 =   27,  
     };
 
     // constructor
@@ -828,6 +829,8 @@ private:
 
     // controls which controller is run (pos or vel):
     GuidedMode guided_mode = Guided_TakeOff;
+    
+    friend class ModeSTM23;
 
 };
 
@@ -853,6 +856,28 @@ protected:
 
 private:
 
+};
+
+class ModeSTM23 : public ModeGuided {
+
+public:
+    // inherit constructor
+    using ModeGuided::Mode;
+
+    void run() override;
+
+    bool requires_GPS() const override { return true; }
+    bool has_manual_throttle() const override { return false; }
+    bool allows_arming(bool from_gcs) const override { return from_gcs; }
+    bool is_autopilot() const override { return true; }
+
+protected:
+
+    const char *name() const override { return "MODESTM23"; }
+    const char *name4() const override { return "MSTM"; }
+
+private:
+    
 };
 
 
@@ -1338,7 +1363,7 @@ public:
 
     bool init(bool ignore_checks) override;
     void run() override;
-
+    
     bool requires_GPS() const override { return true; }
     bool has_manual_throttle() const override { return false; }
     bool allows_arming(bool from_gcs) const override { return false; }

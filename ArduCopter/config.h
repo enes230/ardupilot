@@ -318,6 +318,13 @@
 #endif
 
 //////////////////////////////////////////////////////////////////////////////
+// STM mode
+#ifndef MODE_STM23
+# define MODE_STM23 ENABLED
+#endif
+
+
+//////////////////////////////////////////////////////////////////////////////
 // GuidedNoGPS mode - control vehicle's angles from GCS
 #ifndef MODE_GUIDED_NOGPS_ENABLED
 # define MODE_GUIDED_NOGPS_ENABLED !HAL_MINIMIZE_FEATURES
